@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <div v-if="liked">좋아요 눌렀음</div>
+      <button v-else v-on:click="onClickButton">Liked</button>
+      <div>asdfasdf</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#root", // id가 root 인 element를 통제하게 됨!
+        data: {
+          liked: false,
+        }, // 데이터만 관리한다!
+        methods: {
+          onClickButton() {
+            this.liked = true;
+          },
+        },
+      });
+      // 생각하는 사고를 바꾸기!
+      // 1. 데이터를 관리한다. -> 나는 데이터를 바꾸었을 뿐인데, 화면은 vue가 알아서 바꿔준다.
+      // 2. Vue 가 관리하는 엘레멘트는 Vue로 통제한다.
+
+      // 문법
+      // 1. if -else if - else 는 형제 태그이면서 인접해야함
+      // v 속성에는 자바스크립트 문법도 사용가능..
+    </script>
+  </body>
+</html>

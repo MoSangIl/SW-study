@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <form v-on:submit="onSubmitForm">
+        <div>{{first}} 곱하기 {{second}} 는?</div>
+        <input type="number" ref="answer" v-model="value" />
+        <button>입력</button>
+        <div>{{result}}</div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#root",
+        data: {
+          first: Math.ceil(Math.random() * 9),
+          second: Math.ceil(Math.random() * 9),
+          value: "",
+          result: "",
+        },
+        methods: {
+          onSubmitForm(e) {
+            e.preventDefault(); // 새로고침 방지!
+            if (this.first * this.second === parseInt(this.value)) {
+              this.result = "정답";
+              this.first = Math.ceil(Math.random() * 9);
+              this.second = Math.ceil(Math.random() * 9);
+              this.value = "";
+              this.$refs.answer.focus(); // jQuery 선택하듯, vue가 선택하는 방법!
+            } else {
+              this.result = "땡";
+              this.value = "";
+            }
+          },
+        },
+      });
+      // v-model : 양방향 바인딩
+      // input에 값을 넣을때, 값이 자동으로 바인딩된다.
+      // ref : vue 가 부르는 tag 의 이름
+      // -> 남용하는 것은 좋지 않고, data로 할 수 없는 일만!
+      // -> 직접 데이터를 건들지 않도록 주의해라!
+    </script>
+  </body>
+</html>
