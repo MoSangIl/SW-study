@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>끝말 잇기</title>
+  </head>
+  <body>
+    <div id="root">
+      <h3>{{word}}</h3>
+      <form v-on:submit="onCheckWords">
+        <input required ref="answer" v-model="answer" />
+        <button>확인</button>
+      </form>
+      <h3>{{result}}</h3>
+      <word-relay></word-relay>
+      <word-relay></word-relay>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      // 전역 컴포넌트!
+      // 인스턴스 안에 포함되어야 한다.
+      Vue.component("word-relay", {
+        template: `
+            <div>
+            <h3>{{word}}</h3>
+            <form v-on:submit="onCheckWords">
+                <input required ref="answer" v-model="answer" />
+                <button>확인</button>
+            </form>
+            <h3>{{result}}</h3>
+            </div>
+        `,
+        data() {
+          return {
+            word: "시작",
+            answer: "",
+            result: "",
+          };
+        },
+        methods: {
+          onCheckWords(event) {
+            event.preventDefault();
+            if (this.word[this.word.length - 1] === this.answer[0]) {
+              this.word = this.answer;
+              this.answer = "";
+              this.result = "딩동댕!";
+            } else {
+              this.answer = "";
+              this.result = "땡!";
+            }
+            this.$refs.answer.focus();
+          },
+        },
+      });
+    </script>
+    <script>
+      const app = new Vue({
+        el: "#root",
+        data: {
+          word: "시작",
+          answer: "",
+          result: "",
+        },
+        methods: {
+          onCheckWords(event) {
+            event.preventDefault();
+            if (this.word[this.word.length - 1] === this.answer[0]) {
+              this.word = this.answer;
+              this.answer = "";
+              this.result = "딩동댕!";
+            } else {
+              this.answer = "";
+              this.result = "땡!";
+            }
+            this.$refs.answer.focus();
+          },
+        },
+      });
+      /*
+        웹팩을 사용하는 이유?
+        컴포넌트 단위의 화면을 개별로 제어하기 위함!
+        - 만약 같은 인스턴스 (new Vue)를 가지고, html 요소만 복붙하면 데이터가 공유된다.
+        - 컴포넌트를 사용하면, 데이터 공유가 아닌 개별로 제어 가능하다!
+      */
+    </script>
+  </body>
+</html>
