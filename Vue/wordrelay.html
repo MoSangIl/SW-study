@@ -14,8 +14,8 @@
         <button>확인</button>
       </form>
       <h3>{{result}}</h3>
-      <word-relay></word-relay>
-      <word-relay></word-relay>
+      <word-relay start-word="행복"></word-relay>
+      <word-relay start-word="불행"></word-relay>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -32,9 +32,10 @@
             <h3>{{result}}</h3>
             </div>
         `,
+        props: ["startWord"],
         data() {
           return {
-            word: "시작",
+            word: this.startWord,
             answer: "",
             result: "",
           };
