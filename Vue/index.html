@@ -27,7 +27,7 @@
     </div>
     <div id="app-6">
       <p>{{message}}</p>
-      <input v-model="message" />
+      <input v-bind:value="message" @change="onChange" />
     </div>
     <div id="app-7">
       <ol>
@@ -93,6 +93,11 @@
         el: "#app-6",
         data: {
           message: "안녕하세요 Vue!",
+        },
+        methods: {
+          onChange(e) {
+            this.message = e.target.value;
+          },
         },
       });
 

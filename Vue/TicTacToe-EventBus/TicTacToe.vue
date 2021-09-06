@@ -6,7 +6,7 @@
 </template>
 <script>
 import TableComponent from "./TableComponent";
-import EventBus from "./EventBus";
+
 export default {
   components: {
     TableComponent,
@@ -22,7 +22,7 @@ export default {
     };
   },
   methods: {
-    onClickTd(rowIndex, cellIndex) {
+    onClickTd() {
       this.$set(this.tableData[rowIndex], cellIndex, this.turn);
       let win = false;
       if (

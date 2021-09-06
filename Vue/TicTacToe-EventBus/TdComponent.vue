@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import EventBus from "./EventBus";
 export default {
   props: {
     cellData: String,
