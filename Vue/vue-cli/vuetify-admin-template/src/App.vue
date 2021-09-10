@@ -2,6 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -20,9 +21,8 @@
           width="100"
         />
       </div>
-
-      <v-spacer></v-spacer>
-
+      <v-spacer />
+      <!--
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -30,9 +30,9 @@
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
-    <v-navigation-drawer app>
+    <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
@@ -44,7 +44,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-divider></v-divider>
+      <v-divider />
 
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" link :to="item.to">
@@ -59,7 +59,9 @@
       </v-list>
     </v-navigation-drawer>
     <v-main>
-      <router-view />
+      <v-continaer fluid>
+        <router-view />
+      </v-continaer>
     </v-main>
   </v-app>
 </template>
@@ -69,11 +71,12 @@ export default {
   name: "App",
 
   data: () => ({
+    drawer: false,
     items: [
       { title: "Dashboard", icon: "mdi-view-dashboard", to: "/" },
-      { title: "GridSystem", icon: "mdi-image", to: "/grid-system" },
+      { title: "GridSystem", icon: "mdi-image", to: "/grid-system" }
     ],
-    right: null,
-  }),
+    right: null
+  })
 };
 </script>

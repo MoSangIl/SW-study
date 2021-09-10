@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Dash Board
-  </div>
+  <v-container fluid>
+    <v-card class="pa-3">DashBoard</v-card>
+  </v-container>
 </template>
 
 <script>
